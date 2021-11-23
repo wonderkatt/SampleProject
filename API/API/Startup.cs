@@ -35,7 +35,10 @@ namespace API
             {
                 var context = serviceScope.ServiceProvider.GetRequiredService<ApiDbContext>();
                 context.Database.EnsureCreated();
-                DatabaseSeeder.Seed(context);
+                if(!context.Records.Any())
+                {
+                    DatabaseSeeder.Seed(context);
+                }
             }
             if (env.IsDevelopment())
             {

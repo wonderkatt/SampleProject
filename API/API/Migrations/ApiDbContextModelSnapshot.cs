@@ -15,18 +15,36 @@ namespace API.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "5.0.12");
 
-            modelBuilder.Entity("API.Models.test", b =>
+            modelBuilder.Entity("API.Models.Record", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("name")
+                    b.Property<int>("Born2016")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Born2017")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Born2018")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Born2019")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Born2020")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Gender")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Region")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
-                    b.ToTable("tests");
+                    b.ToTable("Records");
                 });
 #pragma warning restore 612, 618
         }

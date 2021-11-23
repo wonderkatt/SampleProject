@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Migrations
 {
     [DbContext(typeof(ApiDbContext))]
-    [Migration("20211122193900_init")]
+    [Migration("20211123160459_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -17,18 +17,36 @@ namespace API.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "5.0.12");
 
-            modelBuilder.Entity("API.Models.test", b =>
+            modelBuilder.Entity("API.Models.Record", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("name")
+                    b.Property<int>("Born2016")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Born2017")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Born2018")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Born2019")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Born2020")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Gender")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Region")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
-                    b.ToTable("tests");
+                    b.ToTable("Records");
                 });
 #pragma warning restore 612, 618
         }

@@ -9,16 +9,16 @@ namespace API.Data
 {
     public class ApiDbContext : DbContext
     {
-        private string databasePath;
+        private string currentDirectory;
         public ApiDbContext()
         {
-            databasePath = Environment.CurrentDirectory;
+            currentDirectory = Environment.CurrentDirectory;
         }
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
-            options.UseSqlite($"Data Source={databasePath}\\Data\\test.db");
+            options.UseSqlite($"Data Source={currentDirectory}\\Data\\test.db");
         }
 
-        public DbSet<test> tests { get; set; }
+        public DbSet<Record> Records { get; set; }
     }
 }
