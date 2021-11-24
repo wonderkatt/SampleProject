@@ -1,4 +1,6 @@
 using API.Data;
+using API.Interfaces;
+using API.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -24,6 +26,7 @@ namespace API
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<IRecordRepository, RecordRepository>();
             services.AddDbContext<ApiDbContext>();
 
             services.AddControllers();
