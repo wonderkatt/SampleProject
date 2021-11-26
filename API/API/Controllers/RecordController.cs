@@ -25,6 +25,7 @@ namespace API.Controllers
         public List<Record> Get()
         {
             var records = recordRepository.GetRecords();
+            
             return records; 
         }
     }

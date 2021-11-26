@@ -17,7 +17,10 @@ namespace API.Repositories
         }
         public  List<Record> GetRecords()
         {
-            return context.Records.ToList();
+            return context.Records
+                .OrderBy(r => r.Region)
+                .ThenBy(r => r.Gender)
+                .ToList();
         }
     }
 }

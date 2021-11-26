@@ -1,25 +1,31 @@
-import { useEffect } from "react";
-import { useRecoilState} from "recoil";
-import { RecordListState } from "../state/Atoms";
+import {useState } from "react";
+import ReactPaginate from "react-paginate";
+import {useRecoilValue} from "recoil";
+import { filteredRecordListState } from "../state/Selectors";
 import Record from "./Record";
-
+import RecordListFilter from "./recordListFilter";
+import { Table }  from "react-bootstrap";
 
 export default function RecordList(){
-    const [recordList, setRecordList] = useRecoilState(RecordListState)
+    const recordList = useRecoilValue(filteredRecordListState)
+    const [pageNumber, setPageNumber] = useState(0);
+
+    const recordsPerPage = 25;
+    const pagesViewed = pageNumber * recordsPerPage;
+    const pageCount = Math.ceil(recordList.length / recordsPerPage);
     
+    const displayList =  recordList
+    .slice(pagesViewed, pagesViewed + recordsPerPage)
+    .map((record) => {return  (<Record key={record.id} record={record}/> )});  
 
-   const updateRecordList = ({data}) => {
-        setRecordList(data)
-   }
-
-    useEffect(() => {
-        fetch("http://localhost:52287/record")
-        .then(response => response.json())
-        .then(data => updateRecordList(data))
-        .catch(error => console.log(error))}, [])
+    const changePage = ({selected}) => {
+         setPageNumber(selected)
+        };
 
     return(
-        <table>
+        <>
+        <RecordListFilter/>
+        <Table striped bordered hover>
             <thead>
                 <tr>
                     <th>Region</th>
@@ -32,11 +38,25 @@ export default function RecordList(){
                 </tr>
             </thead>
             <tbody>
-
-                {recordList.map((record) => (
-                <Record key={record.id} record={record}/>
-                ))}
+                <>
+                {displayList}
+                </>
             </tbody>
-        </table>
+        </Table>
+        <>
+                <ReactPaginate
+                previousLabel={"Previous"}
+                nextLabel={"Next"}
+                pageCount={pageCount}
+                onPageChange={changePage}
+                containerClassName={"pagination"}
+                previousLinkClassName={"previousButton"}
+                nextLinkClassName={"nextButton"}
+                disabledClassName={"paginationDisabled"}
+                activeClassName={"active"}
+                /> 
+                </>
+         </>
     );
+
 }

@@ -41,6 +41,7 @@ namespace API
                 if(!context.Records.Any())
                 {
                     DatabaseSeeder.Seed(context);
+                    
                 }
             }
             if (env.IsDevelopment())
