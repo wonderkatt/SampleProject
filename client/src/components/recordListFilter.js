@@ -11,8 +11,8 @@ export default function RecordListFilter() {
 
     return (
         <>
-            Kön: 
-            <select value={filter} onChange={updateFilter}>
+            Välj kön:
+            <select className="filterSelect" value={filter} onChange={updateFilter}>
                 <option value="both">Bägge</option>
                 <option value="women">Kvinnor</option>
                 <option value="men">Män</option>

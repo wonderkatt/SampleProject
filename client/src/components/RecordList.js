@@ -10,7 +10,7 @@ export default function RecordList(){
     const recordList = useRecoilValue(filteredRecordListState)
     const [pageNumber, setPageNumber] = useState(0);
 
-    const recordsPerPage = 25;
+    const recordsPerPage = 18;
     const pagesViewed = pageNumber * recordsPerPage;
     const pageCount = Math.ceil(recordList.length / recordsPerPage);
     
@@ -24,39 +24,38 @@ export default function RecordList(){
 
     return(
         <>
-        <RecordListFilter/>
-        <Table striped bordered hover>
-            <thead>
-                <tr>
+            <RecordListFilter/>
+            <Table striped bordered hover>
+                <thead>
+                    <tr>
                     <th>Region</th>
-                    <th>gender</th>
+                    <th>Kön</th>
                     <th>Födda 2016</th>
                     <th>Födda 2017</th>
                     <th>Födda 2018</th>
                     <th>Födda 2019</th>
                     <th>Födda 2020</th>
-                </tr>
-            </thead>
-            <tbody>
-                <>
-                {displayList}
-                </>
-            </tbody>
-        </Table>
-        <>
+                    </tr>
+             </thead>
+                <tbody>
+                    <>
+                        {displayList}
+                    </>
+                </tbody>
+            </Table>
+            <>
                 <ReactPaginate
-                previousLabel={"Previous"}
-                nextLabel={"Next"}
+                previousLabel={"Föregående"}
+                nextLabel={"Nästa"}
                 pageCount={pageCount}
                 onPageChange={changePage}
                 containerClassName={"pagination"}
-                previousLinkClassName={"previousButton"}
-                nextLinkClassName={"nextButton"}
-                disabledClassName={"paginationDisabled"}
                 activeClassName={"active"}
+                nextLinkClassName={"next"}
+                previousLinkClassName={"previous"}
                 /> 
-                </>
-         </>
+            </>
+        </>
     );
 
 }
