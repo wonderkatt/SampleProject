@@ -16,7 +16,7 @@ namespace API.Data
         }
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
-            options.UseSqlite($"Data Source={currentDirectory}\\Data\\test.db");
+            options.UseSqlite($"Data Source={currentDirectory}\\Data\\Record.db");
         }
 
         public DbSet<Record> Records { get; set; }
