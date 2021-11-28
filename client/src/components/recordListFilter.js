@@ -1,12 +1,13 @@
-import { useRecoilState } from "recoil";
-import { RecordFilterState } from "../state/Atoms";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { PageCountState, RecordFilterState } from "../state/Atoms";
 
 export default function RecordListFilter() {
     const [filter, setFilter] = useRecoilState(RecordFilterState);
+    const setPageCount = useSetRecoilState(PageCountState);
 
     const updateFilter= ({target: {value}}) => {
+        setPageCount(0);
         setFilter(value);
-        console.log(value);
     }
 
     return (

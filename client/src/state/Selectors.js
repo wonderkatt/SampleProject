@@ -1,7 +1,7 @@
 import { selector } from "recoil";
 import { RecordFilterState, RecordListState } from "./Atoms";
 
-export const filteredRecordListState = selector({
+export const FilteredRecordListState = selector({
     key: 'filteredRecordListState',
     get: ({get}) => {
         const filter = get(RecordFilterState);

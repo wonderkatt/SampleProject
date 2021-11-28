@@ -9,3 +9,8 @@ export const RecordListState = atom({
     key: 'recordFilterState',
     default: 'both',
   });
+
+  export const PageCountState = atom({
+    key: 'pageCountState',
+    default: 0,
+  });

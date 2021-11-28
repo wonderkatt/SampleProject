@@ -1,14 +1,14 @@
-import {useState } from "react";
 import ReactPaginate from "react-paginate";
-import {useRecoilValue} from "recoil";
-import { filteredRecordListState } from "../state/Selectors";
+import {useRecoilState, useRecoilValue} from "recoil";
+import { FilteredRecordListState } from "../state/Selectors";
 import Record from "./Record";
 import RecordListFilter from "./recordListFilter";
 import { Table }  from "react-bootstrap";
+import { PageCountState } from "../state/Atoms";
 
 export default function RecordList(){
-    const recordList = useRecoilValue(filteredRecordListState)
-    const [pageNumber, setPageNumber] = useState(0);
+    const recordList = useRecoilValue(FilteredRecordListState)
+    const [pageNumber, setPageNumber] = useRecoilState(PageCountState);
 
     const recordsPerPage = 18;
     const pagesViewed = pageNumber * recordsPerPage;
@@ -25,7 +25,7 @@ export default function RecordList(){
     return(
         <>
             <RecordListFilter/>
-            <Table striped bordered hover>
+            <Table striped bordered hover className="recordTable">
                 <thead>
                     <tr>
                     <th>Region</th>
@@ -53,6 +53,8 @@ export default function RecordList(){
                 activeClassName={"active"}
                 nextLinkClassName={"next"}
                 previousLinkClassName={"previous"}
+                pageRangeDisplayed={5}
+                marginPagesDisplayed={1}
                 /> 
             </>
         </>

@@ -7,7 +7,9 @@ function App() {
   return (
     <div className="App">
       <ApiService/>
-      <RecordList/>
+      <div className="container">
+        <RecordList/>
+      </div>
     </div>
   );
 }
